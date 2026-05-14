@@ -43,14 +43,14 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Valor positivo para evitar sumir atrás do fundo do pai */
+    z-index: 1;
 }
 
 .video-background video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 1;
+    object-position: right center;
 }
 
 .overlay {
