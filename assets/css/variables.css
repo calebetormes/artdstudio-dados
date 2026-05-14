@@ -1,0 +1,23 @@
+:root {
+    /* Colors - Monochromatic Theme */
+    --primary: #000000;
+    --primary-hover: #1a1a1a;
+    --primary-glow: rgba(0, 0, 0, 0.2);
+    --accent: #4B5563;
+    
+    --bg-page: #F3F4F6;
+    --bg-card: #FFFFFF;
+    --text-main: #000000;
+    --text-muted: #6B7280;
+    --border: rgba(0, 0, 0, 0.1);
+
+    /* Typography */
+    --font-main: 'Helvetica', 'Arial', sans-serif;
+    --font-heading: 'Helvetica', 'Arial', sans-serif;
+    --brand-gold: #374151;
+    
+    /* Effects */
+    --radius-xl: 1.2rem;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.5);
+}
