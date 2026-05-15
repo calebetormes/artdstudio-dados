@@ -591,7 +591,8 @@ body {
     .hero {
         flex-direction: column;
         justify-content: center;
-        padding: 20px;
+        align-items: center; /* Centralização horizontal no mobile */
+        padding: 40px 20px;
         position: relative;
     }
 
@@ -713,11 +714,13 @@ body {
     /* 4. Conteúdo Central */
     .content-wrapper {
         flex: 0 0 auto;
-        padding: 0;
+        padding: 0 20px; /* Margens laterais iguais */
         width: 100%;
         text-align: center;
+        display: flex;
+        flex-direction: column;
         align-items: center;
-        margin-top: 8vh;
+        margin-top: 5vh;
         z-index: 10;
     }
     .hero-title {
@@ -774,7 +777,7 @@ body {
 
     /* Dobra 2 Mobile */
     .diagnostic-section {
-        padding: 80px 20px;
+        padding: 100px 25px; /* Margens laterais equilibradas */
     }
     .section-title {
         font-size: 2.2rem;
@@ -789,20 +792,30 @@ body {
     }
     .diag-item {
         border-right: none;
-        border-left: 1px solid rgba(0,0,0,0.08);
-        border-top: 1px solid rgba(0,0,0,0.08);
-        padding: 30px 20px;
-    }
-    .diag-item:last-child {
+        border-left: none;
         border-bottom: 1px solid rgba(0,0,0,0.08);
+        padding: 40px 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .diag-item:first-child {
+        border-top: 1px solid rgba(0,0,0,0.08);
     }
     .diagnostic-footer {
-        padding-left: 20px;
+        padding: 0 20px; /* Preenchimento equilibrado */
+        text-align: center;
+        width: 100%;
     }
     .footer-highlight {
         font-size: 1.6rem;
+        margin-bottom: 10px;
+        border-left: none; /* Remove borda lateral que desloca visualmente */
+        padding-left: 0;
     }
     .footer-support {
         font-size: 1rem;
+        padding: 0 10px;
     }
 }
