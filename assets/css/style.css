@@ -96,6 +96,19 @@ body {
     background: var(--clr-white);
 }
 
+.diag-icon {
+    font-size: 1.8rem;
+    color: var(--clr-black);
+    margin-bottom: 25px;
+    opacity: 0.25;
+    transition: all 0.6s var(--ease-out-expo);
+}
+
+.diag-item:hover .diag-icon {
+    opacity: 1;
+    transform: translateY(-4px);
+}
+
 .diag-number {
     display: block;
     font-size: 0.8rem;

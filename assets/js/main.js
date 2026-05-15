@@ -1,17 +1,40 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // ==========================================
-    // Mobile Menu Navigation
-    // ==========================================
+// Função para carregar componentes HTML assincronamente
+async function loadComponent(containerId, filePath) {
+    try {
+        const response = await fetch(filePath);
+        if (!response.ok) throw new Error(`Falha ao carregar ${filePath}`);
+        const html = await response.text();
+        document.getElementById(containerId).innerHTML = html;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// Inicializa a aplicação após carregar as dobras
+async function initApp() {
+    // 1. Carregar as dobras dinamicamente
+    await Promise.all([
+        loadComponent('hero-container', 'components/hero.html'),
+        loadComponent('diagnostic-container', 'components/diagnostic.html')
+    ]);
+
+    // 2. Após o carregamento, inicializar as interações
+    initMobileMenu();
+    initSmoothScroll();
+    initHeaderGlassmorphism();
+    initSidebarSpy();
+}
+
+// Funções de Inicialização (Separadas e Organizadas)
+
+function initMobileMenu() {
     const hamburger = document.querySelector('.hamburger-menu');
     const navLinks = document.querySelector('.nav-links');
     
     if (hamburger && navLinks) {
         const icon = hamburger.querySelector('i');
-
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            
-            // Toggle hamburger icon to 'X' when open
             if (navLinks.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-xmark');
@@ -21,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Close menu when clicking a link
         const links = navLinks.querySelectorAll('a');
         links.forEach(link => {
             link.addEventListener('click', () => {
@@ -31,10 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+}
 
-    // ==========================================
-    // Smooth Scroll (Setup for next sections)
-    // ==========================================
+function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -43,16 +64,13 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
+                targetElement.scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
+}
 
-    // ==========================================
-    // Scroll Effects (Glassmorphism on Header & Mobile Dock)
-    // ==========================================
+function initHeaderGlassmorphism() {
     const header = document.querySelector('.main-header');
     const socialIcons = document.querySelector('.social-icons');
     
@@ -65,22 +83,18 @@ document.addEventListener('DOMContentLoaded', () => {
             if (socialIcons) socialIcons.classList.remove('scrolled');
         }
     });
-    // ==========================================
-    // Sidebar Active Number Toggle
-    // ==========================================
+}
+
+function initSidebarSpy() {
     const sections = document.querySelectorAll('section[id]');
     const pageNums = document.querySelectorAll('.page-num');
 
     if (sections.length > 0 && pageNums.length > 0) {
-        const observerOptions = {
-            threshold: 0.5
-        };
-
+        const observerOptions = { threshold: 0.5 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const sectionId = entry.target.id;
-                    
                     pageNums.forEach(num => {
                         num.classList.remove('active');
                         if (num.getAttribute('data-section') === sectionId) {
@@ -101,4 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
             observer.observe(section);
         });
     }
-});
+}
+
+// Iniciar quando o DOM base estiver pronto
+document.addEventListener('DOMContentLoaded', initApp);
