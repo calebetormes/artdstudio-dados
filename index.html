@@ -102,5 +102,22 @@
         </div>
     </section>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.querySelector('.video-background video');
+            
+            if (video) {
+                // Efeito de fade out 0.8s antes de terminar o vídeo
+                video.addEventListener('timeupdate', () => {
+                    const fadeOutTime = 0.8;
+                    if (video.duration > 0 && video.currentTime > video.duration - fadeOutTime) {
+                        video.style.opacity = '0';
+                    } else if (video.currentTime < fadeOutTime) {
+                        video.style.opacity = '1';
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

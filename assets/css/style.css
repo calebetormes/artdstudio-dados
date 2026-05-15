@@ -1,13 +1,11 @@
 :root {
     /* Colors */
     --clr-white: #ffffff;
-    --clr-black: #050505;
-    --clr-primary: #0056b3; /* Corporate Blue */
-    --clr-accent: #e67e22;  /* Technical Orange */
-    --clr-grey-light: #666666;
+    --clr-black: #000000;
+    --clr-grey-light: #cccccc;
     --clr-grey-dark: #333333;
-    --clr-overlay: rgba(255, 255, 255, 0.5);
-    --clr-glass: rgba(0, 0, 0, 0.05);
+    --clr-overlay: rgba(0, 0, 0, 0.7);
+    --clr-glass: rgba(255, 255, 255, 0.1);
 
     /* Fonts */
     --font-primary: 'Montserrat', sans-serif;
@@ -25,7 +23,7 @@
 body {
     font-family: var(--font-primary);
     overflow: hidden; 
-    background-color: var(--clr-white);
+    background-color: var(--clr-black);
 }
 
 .hero {
@@ -33,7 +31,7 @@ body {
     width: 100vw;
     height: 100vh;
     display: flex;
-    background-color: var(--clr-white);
+    background-color: var(--clr-black);
 }
 
 /* 1. BACKGROUND VIDEO & OVERLAY */
@@ -44,6 +42,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: 1;
+    background-color: var(--clr-black);
 }
 
 .video-background video {
@@ -51,6 +50,8 @@ body {
     height: 100%;
     object-fit: cover;
     object-position: right center;
+    filter: grayscale(60%);
+    transition: opacity 0.8s ease-in-out;
 }
 
 .overlay {
@@ -69,13 +70,14 @@ body {
 .sidebar-left {
     width: var(--sidebar-width);
     height: 100%;
-    background-color: var(--clr-white);
+    background-color: var(--clr-black);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 30px 0;
     z-index: 10;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .menu-icon {
@@ -112,18 +114,18 @@ body {
 }
 
 .page-num:hover {
-    color: var(--clr-accent);
+    color: var(--clr-white);
     transform: scale(1.2);
 }
 
 .page-num.active {
-    color: var(--clr-accent);
+    color: var(--clr-white);
 }
 
 .page-line {
     width: 1px;
     height: 60px;
-    background-color: #eee;
+    background-color: rgba(255, 255, 255, 0.1);
     position: relative;
 }
 
@@ -134,7 +136,7 @@ body {
     left: 0;
     width: 100%;
     height: 40%;
-    background-color: var(--clr-black);
+    background-color: var(--clr-white);
 }
 
 .social-icons {
@@ -144,7 +146,7 @@ body {
 }
 
 .social-icons a {
-    color: var(--clr-black);
+    color: var(--clr-white);
     text-decoration: none;
     font-size: 1.1rem;
     transition: all 0.3s ease;
@@ -192,7 +194,7 @@ body {
 }
 
 .nav-links a {
-    color: var(--clr-black);
+    color: var(--clr-white);
     text-decoration: none;
     font-size: 0.85rem;
     font-weight: 600;
@@ -210,7 +212,7 @@ body {
     left: 0;
     width: 100%;
     height: 1px;
-    background-color: var(--clr-primary);
+    background-color: var(--clr-white);
     transform: scaleX(0);
     transform-origin: center;
     transition: transform 0.3s ease-in-out;
@@ -227,7 +229,7 @@ body {
     flex-direction: column;
     justify-content: center;
     padding-left: 100px;
-    color: var(--clr-black);
+    color: var(--clr-white);
     z-index: 10;
     position: relative;
     max-width: 900px;
@@ -239,6 +241,7 @@ body {
     margin-bottom: 24px;
     line-height: 1.05;
     letter-spacing: -1px;
+    color: var(--clr-white);
 }
 
 .hero-subtitle {
@@ -248,36 +251,38 @@ body {
     font-weight: 300; /* Light */
     margin-bottom: 48px;
     opacity: 0.8;
-    color: var(--clr-grey-dark);
+    color: var(--clr-grey-light);
 }
 
 .cta {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 20px;
+    justify-content: center;
+    gap: 10px;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    border: 1px solid var(--clr-white);
+    padding: 12px 30px;
+    background: transparent;
+    color: var(--clr-white);
+    width: max-content;
 }
 
 .cta:hover {
-    transform: translateX(10px);
+    background: var(--clr-white);
+    color: var(--clr-black);
+    transform: translateY(-2px);
 }
 
 .cta span {
-    font-weight: 700;
-    letter-spacing: 2px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
 }
 
 .cta-line {
-    width: 50px;
-    height: 2px;
-    background: var(--clr-accent);
-    transition: width 0.3s ease;
-}
-
-.cta:hover .cta-line {
-    width: 100px;
-    background: var(--clr-primary);
+    display: none;
 }
 
 /* 5. SIDEBAR DIREITA (Floating) */
@@ -320,20 +325,25 @@ body {
 }
 
 .floating-item:hover .circle-btn {
-    background: var(--clr-primary);
-    border-color: var(--clr-primary);
+    background: var(--clr-white);
+    border-color: var(--clr-white);
     transform: scale(1.1);
 }
 
-.circle-btn i {
+.floating-item:hover .circle-btn i {
     color: var(--clr-black);
+}
+
+.circle-btn i {
+    color: var(--clr-white);
     font-size: 1.2rem;
+    transition: color 0.3s ease;
 }
 
 .item-label {
     writing-mode: vertical-rl;
     text-orientation: mixed;
-    color: var(--clr-black);
+    color: var(--clr-white);
     font-size: 0.7rem;
     font-weight: 500;
     letter-spacing: 3px;
@@ -344,7 +354,7 @@ body {
 
 .floating-item:hover .item-label {
     opacity: 1;
-    color: var(--clr-accent);
+    color: var(--clr-white);
 }
 
 .scroll-indicator {
@@ -364,7 +374,7 @@ body {
 }
 
 .scroll-indicator i {
-    color: var(--clr-black);
+    color: var(--clr-white);
     font-size: 1rem;
     animation: bounce 2s infinite;
 }
@@ -372,7 +382,7 @@ body {
 .scroll-line {
     width: 1px;
     height: 40px;
-    background: var(--clr-black);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 /* Responsive adjustments */
