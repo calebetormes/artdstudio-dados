@@ -51,6 +51,9 @@
 
         <!-- 3. Header & Navigation -->
         <header class="main-header">
+            <div class="hamburger-menu">
+                <i class="fa-solid fa-bars"></i>
+            </div>
             <nav class="nav-links">
                 <a href="#">HOME</a>
                 <a href="#">SOLUÇÕES</a>
@@ -101,5 +104,35 @@
             </div>
         </div>
     </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger-menu');
+            const navLinks = document.querySelector('.nav-links');
+            const icon = hamburger.querySelector('i');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                
+                // Troca o ícone de hambúrguer para um "X" quando aberto
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                } else {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // Fecha o menu ao clicar em um link
+            const links = navLinks.querySelectorAll('a');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                });
+            });
+        });
+    </script>
 </body>
 </html>

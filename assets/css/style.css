@@ -176,6 +176,13 @@ body {
     z-index: 20;
 }
 
+.hamburger-menu {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--clr-black);
+}
+
 .logo {
     display: flex;
     align-items: center;
@@ -445,11 +452,167 @@ body {
 }
 
 @media (max-width: 768px) {
-    .sidebar-left { display: none; }
-    .main-header { left: 0; padding: 20px; }
-    .nav-links { display: none; }
-    .hero-title { font-size: 2.5rem; }
-    .sidebar-right { display: none; }
-    .content-wrapper { padding: 20px; align-items: center; text-align: center; }
-    .hero-subtitle { max-width: 100%; }
+    .hero {
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px;
+        position: relative;
+    }
+
+    .video-background video {
+        object-position: center;
+    }
+
+    .overlay {
+        left: 0;
+        width: 100%;
+    }
+
+    /* 3. Header e Navegação */
+    .main-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 25px;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .main-header { z-index: 50; }
+    
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: var(--clr-off-white);
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        z-index: 40;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s var(--ease-out-expo);
+    }
+    
+    .nav-links.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
+    .nav-links a {
+        font-size: 1.5rem;
+    }
+
+    .hamburger-menu {
+        display: block;
+        z-index: 60;
+        position: relative;
+    }
+
+    /* 2. Barra Esquerda (Ocultar Numeração, Mover Logo, 01 e Redes) */
+    .sidebar-left {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: transparent;
+        border: none;
+        padding: 0;
+        pointer-events: none; /* Permite cliques nos elementos atrás da sidebar */
+    }
+    .sidebar-left > * { pointer-events: auto; }
+    
+    .menu-icon {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 50;
+    }
+    .sidebar-icon { width: 40px; } /* Ajuste tamanho do logo mobile */
+
+    /* "01" centralizado acima do título */
+    .pagination {
+        position: absolute;
+        top: 18vh;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row;
+        gap: 0;
+    }
+    .page-num:not(.active), .page-line { display: none; }
+    .page-num.active { font-size: 1rem; color: var(--clr-black); }
+
+    /* 5. Footer / Redes Sociais no final da tela */
+    .social-icons {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row;
+        gap: 30px;
+    }
+
+    /* 4. Conteúdo Central */
+    .content-wrapper {
+        flex: 0 0 auto;
+        padding: 0;
+        width: 100%;
+        text-align: center;
+        align-items: center;
+        margin-top: 8vh;
+        z-index: 10;
+    }
+    .hero-title {
+        font-size: 2.2rem;
+        line-height: 1.1;
+        margin-bottom: 15px;
+    }
+    .hero-subtitle {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 30px;
+        padding: 0 10px;
+    }
+    .cta {
+        width: 100%;
+        max-width: 320px;
+        padding: 15px 20px;
+        justify-content: center;
+    }
+
+    /* Barra Direita (Atributos horizontais) */
+    .sidebar-right {
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+        margin-top: 35px;
+        z-index: 10;
+    }
+    .floating-item {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .floating-item:hover { transform: translateY(-5px); }
+    .circle-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+    }
+    .item-label {
+        writing-mode: horizontal-tb;
+        text-orientation: mixed;
+        font-size: 0.65rem;
+        letter-spacing: 1px;
+    }
+    .floating-item:hover .item-label {
+        transform: translateY(-2px);
+    }
+    .scroll-indicator { display: none; }
 }
