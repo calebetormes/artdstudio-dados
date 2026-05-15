@@ -1,75 +1,88 @@
 document.addEventListener('DOMContentLoaded', () => {
-    /**
-     * INITIALIZE ICONS
-     */
-    if (window.lucide) {
-        window.lucide.createIcons();
-    }
+    // ==========================================
+    // Mobile Menu Navigation
+    // ==========================================
+    const hamburger = document.querySelector('.hamburger-menu');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (hamburger && navLinks) {
+        const icon = hamburger.querySelector('i');
 
-    /**
-     * DYNAMIC NAVIGATION LOGIC
-     * Updates label and arrows based on current section.
-     */
-    const sections = document.querySelectorAll('.lp-section');
-    const sectionLabel = document.getElementById('nav-current-section');
-    const scrollUp = document.getElementById('scroll-up');
-    const scrollDown = document.getElementById('scroll-down');
-
-    const sectionNames = {
-        'hero': 'HOME',
-        'solutions': 'SOLUÇÕES',
-        'about': 'SOBRE'
-    };
-
-    const sectionOrder = ['hero', 'solutions', 'about'];
-
-    const observerOptions = {
-        root: null,
-        threshold: 0.6
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                const index = sectionOrder.indexOf(id);
-                
-                // Update Label
-                if (sectionNames[id] && sectionLabel) {
-                    sectionLabel.style.opacity = '0';
-                    setTimeout(() => {
-                        sectionLabel.textContent = sectionNames[id];
-                        sectionLabel.style.opacity = '0.4';
-                    }, 300);
-                }
-
-                // Update Arrows
-                if (scrollUp && scrollDown) {
-                    // Handle Up Arrow
-                    if (index > 0) {
-                        scrollUp.setAttribute('href', `#${sectionOrder[index - 1]}`);
-                        scrollUp.style.opacity = '1';
-                        scrollUp.style.pointerEvents = 'all';
-                    } else {
-                        scrollUp.style.opacity = '0';
-                        scrollUp.style.pointerEvents = 'none';
-                    }
-
-                    // Handle Down Arrow
-                    if (index < sectionOrder.length - 1) {
-                        scrollDown.setAttribute('href', `#${sectionOrder[index + 1]}`);
-                        scrollDown.style.opacity = '1';
-                        scrollDown.style.pointerEvents = 'all';
-                    } else {
-                        scrollDown.style.opacity = '0';
-                        scrollDown.style.pointerEvents = 'none';
-                    }
-                }
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Toggle hamburger icon to 'X' when open
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
             }
         });
-    }, observerOptions);
 
-    sections.forEach(section => {
-        observer.observe(section);
+        // Close menu when clicking a link
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            });
+        });
+    }
+
+    // ==========================================
+    // Smooth Scroll (Setup for next sections)
+    // ==========================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
     });
+    // ==========================================
+    // Sidebar Active Number Toggle
+    // ==========================================
+    const sections = document.querySelectorAll('section[id]');
+    const pageNums = document.querySelectorAll('.page-num');
+
+    if (sections.length > 0 && pageNums.length > 0) {
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.id;
+                    
+                    pageNums.forEach(num => {
+                        num.classList.remove('active');
+                        if (num.getAttribute('data-section') === sectionId) {
+                            num.classList.add('active');
+                            
+                            // Move a linha para baixo do número ativo
+                            const line = document.querySelector('.page-line');
+                            if (line) {
+                                num.after(line);
+                            }
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    }
 });

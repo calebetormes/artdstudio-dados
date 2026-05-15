@@ -18,7 +18,42 @@
 </head>
 <body>
 
-    <section class="hero">
+    <!-- 2. Sidebar Esquerda (Global) -->
+    <aside class="sidebar-left">
+        <div class="menu-icon">
+            <img src="assets/imagens/ico_laranja.webp" alt="Menu Icon" class="sidebar-icon">
+        </div>
+
+        <div class="pagination">
+            <a href="#hero" class="page-num active" data-section="hero">01</a>
+            <div class="page-line"></div>
+            <a href="#sobre" class="page-num" data-section="sobre">02</a>
+            <a href="#" class="page-num">03</a>
+            <a href="#" class="page-num">04</a>
+            <a href="#" class="page-num">05</a>
+        </div>
+
+        <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+    </aside>
+
+    <!-- 3. Header & Navigation (Global) -->
+    <header class="main-header">
+        <div class="hamburger-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav class="nav-links">
+            <a href="#hero">HOME</a>
+            <a href="#sobre">DIAGNÓSTICO</a>
+            <a href="#">COMO FUNCIONA</a>
+            <a href="#">CONTATO</a>
+        </nav>
+    </header>
+
+    <section id="hero" class="hero">
         <!-- 1. Background Video & Overlay -->
         <div class="video-background">
             <video autoplay loop muted playsinline>
@@ -26,41 +61,6 @@
             </video>
         </div>
         <div class="overlay"></div>
-
-        <!-- 2. Sidebar Esquerda -->
-        <aside class="sidebar-left">
-            <div class="menu-icon">
-                <img src="assets/imagens/new-square-logo-gw.webp" alt="Menu Icon" class="sidebar-icon">
-            </div>
-
-            <div class="pagination">
-                <span class="page-num active">01</span>
-                <div class="page-line"></div>
-                <span class="page-num">02</span>
-                <span class="page-num">03</span>
-                <span class="page-num">04</span>
-                <span class="page-num">05</span>
-            </div>
-
-            <div class="social-icons">
-                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-            </div>
-        </aside>
-
-        <!-- 3. Header & Navigation -->
-        <header class="main-header">
-            <div class="hamburger-menu">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-            <nav class="nav-links">
-                <a href="#">HOME</a>
-                <a href="#">SOLUÇÕES</a>
-                <a href="#">COMO FUNCIONA</a>
-                <a href="#">CONTATO</a>
-            </nav>
-        </header>
 
         <!-- 4. Conteúdo Central -->
         <main class="content-wrapper">
@@ -99,40 +99,61 @@
 
             <!-- Scroll Indicator -->
             <div class="scroll-indicator">
+                <span class="scroll-text">SCROLL</span>
                 <div class="scroll-line"></div>
                 <i class="fa-solid fa-chevron-down"></i>
             </div>
         </div>
     </section>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const hamburger = document.querySelector('.hamburger-menu');
-            const navLinks = document.querySelector('.nav-links');
-            const icon = hamburger.querySelector('i');
 
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                
-                // Troca o ícone de hambúrguer para um "X" quando aberto
-                if (navLinks.classList.contains('active')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-xmark');
-                } else {
-                    icon.classList.remove('fa-xmark');
-                    icon.classList.add('fa-bars');
-                }
-            });
+    <!-- ==============================================
+         DOBRA 2: DIAGNÓSTICO
+         ============================================== -->
+    <section id="sobre" class="diagnostic-section">
+        <div class="diagnostic-container">
+            <h2 class="section-title">Sua operação provavelmente já funciona assim.</h2>
 
-            // Fecha o menu ao clicar em um link
-            const links = navLinks.querySelectorAll('a');
-            links.forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    icon.classList.remove('fa-xmark');
-                    icon.classList.add('fa-bars');
-                });
-            });
-        });
-    </script>
+            <div class="diagnostic-grid">
+                <div class="diag-item">
+                    <span class="diag-number">01</span>
+                    <h3 class="diag-title">Informações espalhadas</h3>
+                    <p class="diag-desc">Planilhas diferentes para controlar a mesma operação.</p>
+                </div>
+                <div class="diag-item">
+                    <span class="diag-number">02</span>
+                    <h3 class="diag-title">Processos manuais</h3>
+                    <p class="diag-desc">Atualizações repetitivas e retrabalho diário.</p>
+                </div>
+                <div class="diag-item">
+                    <span class="diag-number">03</span>
+                    <h3 class="diag-title">Sistemas desconectados</h3>
+                    <p class="diag-desc">Ferramentas que não compartilham dados.</p>
+                </div>
+                <div class="diag-item">
+                    <span class="diag-number">04</span>
+                    <h3 class="diag-title">Dependência operacional</h3>
+                    <p class="diag-desc">Processos concentrados em pessoas específicas.</p>
+                </div>
+                <div class="diag-item">
+                    <span class="diag-number">05</span>
+                    <h3 class="diag-title">Falta de visibilidade</h3>
+                    <p class="diag-desc">Dificuldade para acompanhar números importantes.</p>
+                </div>
+                <div class="diag-item">
+                    <span class="diag-number">06</span>
+                    <h3 class="diag-title">Dados inconsistentes</h3>
+                    <p class="diag-desc">Informações diferentes em lugares diferentes.</p>
+                </div>
+            </div>
+
+            <div class="diagnostic-footer">
+                <h3 class="footer-highlight">O problema não está nas ferramentas.</h3>
+                <p class="footer-support">Está na forma como as informações circulam pela operação.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
