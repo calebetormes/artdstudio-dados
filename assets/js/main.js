@@ -49,6 +49,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // ==========================================
+    // Scroll Effects (Glassmorphism on Header & Mobile Dock)
+    // ==========================================
+    const header = document.querySelector('.main-header');
+    const socialIcons = document.querySelector('.social-icons');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            if (header) header.classList.add('scrolled');
+            if (socialIcons) socialIcons.classList.add('scrolled');
+        } else {
+            if (header) header.classList.remove('scrolled');
+            if (socialIcons) socialIcons.classList.remove('scrolled');
+        }
+    });
     // ==========================================
     // Sidebar Active Number Toggle
     // ==========================================
