@@ -275,6 +275,15 @@ body {
     justify-content: flex-end;
     align-items: center;
     z-index: 90;
+    transition: all 0.4s var(--ease-out-expo);
+}
+
+.main-header.scrolled {
+    background: rgba(252, 252, 252, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 20px 60px;
 }
 
 .hamburger-menu {
@@ -593,7 +602,10 @@ body {
         align-items: center;
         z-index: 100;
     }
-    .main-header { z-index: 50; }
+    
+    .main-header.scrolled {
+        padding: 15px 25px;
+    }
     
     .nav-links {
         display: flex;
@@ -669,6 +681,20 @@ body {
         transform: translateX(-50%);
         flex-direction: row;
         gap: 30px;
+        padding: 12px 30px;
+        border-radius: 12px;
+        transition: all 0.4s var(--ease-out-expo);
+        background: transparent;
+        border: 1px solid transparent;
+        z-index: 90;
+    }
+
+    .social-icons.scrolled {
+        background: rgba(252, 252, 252, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     }
 
     /* 4. Conteúdo Central */
