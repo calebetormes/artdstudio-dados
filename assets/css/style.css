@@ -580,6 +580,47 @@ body {
     background: rgba(0, 0, 0, 0.15);
 }
 
+/* =========================================
+   SECTION DIVIDER
+   ========================================= */
+.section-divider {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 60px 80px 60px 160px; /* Adicionado padding vertical */
+    background-color: var(--clr-off-white);
+    position: relative;
+    z-index: 10;
+}
+
+.divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(0,0,0,0.15), transparent);
+}
+
+.divider-art {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.divider-tag {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 5px;
+    color: var(--clr-black);
+    opacity: 0.4;
+    white-space: nowrap;
+    padding: 10px 20px;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+
 /* Responsive adjustments */
 @media (max-width: 1024px) {
     .hero-title { font-size: 3.5rem; }
@@ -779,6 +820,17 @@ body {
     .diagnostic-section {
         padding: 100px 25px; /* Margens laterais equilibradas */
     }
+
+    .section-divider {
+        padding: 40px 25px;
+        gap: 20px;
+    }
+    
+    .divider-tag {
+        font-size: 0.55rem;
+        letter-spacing: 3px;
+    }
+
     .section-title {
         font-size: 2.2rem;
         margin-bottom: 50px;
