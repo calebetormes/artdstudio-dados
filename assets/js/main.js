@@ -15,7 +15,8 @@ async function initApp() {
     // 1. Carregar as dobras dinamicamente
     await Promise.all([
         loadComponent('hero-container', 'components/hero.html'),
-        loadComponent('diagnostic-container', 'components/diagnostic.html')
+        loadComponent('diagnostic-container', 'components/diagnostic.html'),
+        loadComponent('solution-container', 'components/solution.html')
     ]);
 
     // 2. Após o carregamento, inicializar as interações
@@ -23,6 +24,7 @@ async function initApp() {
     initSmoothScroll();
     initHeaderGlassmorphism();
     initSidebarSpy();
+    initTimelineSpy();
 }
 
 // Funções de Inicialização (Separadas e Organizadas)
@@ -113,6 +115,34 @@ function initSidebarSpy() {
 
         sections.forEach(section => {
             observer.observe(section);
+        });
+    }
+}
+
+function initTimelineSpy() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
+    if (timelineItems.length > 0) {
+        // Observa os itens entrando na tela (margin reduzida para ativar no centro)
+        const observerOptions = {
+            root: null,
+            rootMargin: '-15% 0px -15% 0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                } else {
+                    // Remove class when scrolling out of view for repeatable animation
+                    entry.target.classList.remove('in-view');
+                }
+            });
+        }, observerOptions);
+
+        timelineItems.forEach(item => {
+            observer.observe(item);
         });
     }
 }
